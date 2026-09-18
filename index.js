@@ -158,7 +158,7 @@ function createHeatmap(data, rowKey, columnKey) {
         .append("div")
         .style("opacity", 0)
         .attr("class", "visualization-tooltip")
-        .style("position", "fixed")
+        .style("position", "absolute")
         .style("z-index", "999999")
         .style("pointer-events", "none")
         .style("background-color", "white")
