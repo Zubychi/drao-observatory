@@ -1,0 +1,40 @@
+:root {
+  --font-family: Georgia, 'Times New Roman', Times, serif;;
+  --color-primary: #dbdadd;
+  --color-secondary: #251c19;
+  --font-size: 16px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.heatmaps,
+.barplots {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(450px, 1fr)
+    );
+    gap: 20px;
+}
+
+.heatmap,
+.barplot {
+    width: 100%;
+    height: auto;
+}
+
+text {
+    font-family: var(--font-family);
+}
+
+.cell-label.dark  {
+    fill: var(--color-secondary);
+}
+
+.cell-label.light {
+    fill: var(--color-primary)
+}
