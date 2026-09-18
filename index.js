@@ -64,11 +64,15 @@ function createHeatmap(data, rowKey, columnKey) {
     const width = 450 - margin.left - margin.right;
     const height = 450 - margin.top - margin.bottom;
 
+    const heatmap = d3.select("#my_dataviz")
+        .select(".heatmaps")
+        .append("div")
+        .style("position", "relative");
 
     // SVG
-    const svg = d3.select("#my_dataviz")
-        .select(".heatmaps")
+    const svg = heatmap
         .append("svg")
+        .attr("class", "heatmap")
         .attr("class", "heatmap")
         .attr(
             "width",
@@ -154,8 +158,7 @@ function createHeatmap(data, rowKey, columnKey) {
 
 
     // Tooltip
-    const tooltip = d3.select("#my_dataviz")
-        .select(".heatmaps")
+    const tooltip = heatmap
         .append("div")
         .style("opacity", 0)
         .attr("class", "visualization-tooltip")
@@ -185,6 +188,8 @@ function createHeatmap(data, rowKey, columnKey) {
     // Mousemove
     const mousemove = function(event, d) {
 
+        const rect = heatmap.node().getBoundingClientRect();
+
         tooltip
             .html(
                 `<b>${columnKey}:</b> ${d.column}<br>
@@ -193,11 +198,11 @@ function createHeatmap(data, rowKey, columnKey) {
             )
             .style(
                 "left",
-                `${event.clientX + 10}px`
+                `${event.clientX - rect.left + 10}px`
             )
             .style(
                 "top",
-                `${event.clientY + 10}px`
+                `${event.clientY - rect.top + 10}px`
             );
     };
 
