@@ -154,7 +154,8 @@ function createHeatmap(data, rowKey, columnKey) {
 
 
     // Tooltip
-    const tooltip = d3.select("body")
+    const tooltip = d3.select("#my_dataviz")
+        .select(".heatmaps")
         .append("div")
         .style("opacity", 0)
         .attr("class", "visualization-tooltip")
