@@ -154,18 +154,19 @@ function createHeatmap(data, rowKey, columnKey) {
 
 
     // Tooltip
-    const tooltip = d3.select("#my_dataviz")
-        .select(".heatmaps")
+    const tooltip = d3.select("body")
         .append("div")
         .style("opacity", 0)
         .attr("class", "tooltip")
-        .style("position", "absolute")
+        .style("position", "fixed")
+        .style("z-index", "999999")
+        .style("pointer-events", "none")
         .style("background-color", "white")
+        .style("color", "#251c19")
         .style("border", "solid")
         .style("border-width", "1px")
         .style("border-radius", "5px")
-        .style("padding", "5px")
-        .style("pointer-events", "none");
+        .style("padding", "5px");
 
 
     // Mouseover
@@ -191,11 +192,11 @@ function createHeatmap(data, rowKey, columnKey) {
             )
             .style(
                 "left",
-                `${event.pageX + 10}px`
+                `${event.clientX + 10}px`
             )
             .style(
                 "top",
-                `${event.pageY + 10}px`
+                `${event.clientY + 10}px`
             );
     };
 
