@@ -2,6 +2,13 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 const data = await d3.csv("https://raw.githubusercontent.com/Zubychi/drao-observatory/master/resources/barvy.csv");
 
+const dictionary = {
+    rasa: 'Rasa',
+    barva_oci: 'Barva očí',
+    barva_vlasu: 'Barva vlasů',
+    pohlavi: 'Pohlaví',
+};
+
 createHeatmap(
     data,
     "barva_oci",
@@ -192,8 +199,8 @@ function createHeatmap(data, rowKey, columnKey) {
 
         tooltip
             .html(
-                `<b>${columnKey}:</b> ${d.column}<br>
-                <b>${rowKey}:</b> ${d.row}<br>
+                `<b>${dictionary[columnKey]}:</b> ${d.column}<br>
+                <b>${dictionary[rowKey]}:</b> ${d.row}<br>
                 <b>Počet:</b> ${d.pocet}`
             )
             .style(
@@ -285,7 +292,7 @@ function createHeatmap(data, rowKey, columnKey) {
         .attr("y", -50)
         .attr("text-anchor", "left")
         .style("font-size", "22px")
-        .text(`${columnKey} a ${rowKey}`);
+        .text(`${dictionary[columnKey]} a ${dictionary[rowKey]}`);
 
 
     // Subtitle
@@ -296,7 +303,7 @@ function createHeatmap(data, rowKey, columnKey) {
         .style("font-size", "14px")
         .style("fill", "grey")
         .text(
-            `Počet záznamov pre každú kombináciu ${columnKey} a ${rowKey}.`
+            `Počet záznamov pre každú kombináciu ${dictionary[columnKey]} a ${dictionary[rowKey]}.`
         );
 }
 
@@ -466,7 +473,7 @@ function createBarplot(data, key) {
         .attr("y", -50)
         .attr("text-anchor", "left")
         .style("font-size", "22px")
-        .text(key);
+        .text(dictionary[key]);
 
 
     // Description
@@ -477,6 +484,6 @@ function createBarplot(data, key) {
         .style("font-size", "14px")
         .style("fill", "grey")
         .text(
-            `Počet záznamov pre každú hodnotu pre kategóriu ${key}.`
+            `Počet záznamov pre každú hodnotu pre kategóriu ${dictionary[key]}.`
         );
 }
